@@ -1,0 +1,19 @@
+{
+  "name": "hv-alerts",
+  "version": "1.0.0",
+  "description": "Setup alerts for Exposed credentials on git",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/kartik_hyperverge/hv-alerts.git"
+  },
+  "author": "Kartik Rawat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/kartik_hyperverge/hv-alerts/issues"
+  },
+  "homepage": "https://gitlab.com/kartik_hyperverge/hv-alerts#readme"
+}
