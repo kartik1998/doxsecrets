@@ -1,9 +1,8 @@
 const router = require('express').Router();
-const out = require('@lib/apiout');
-const statusCodes = require('@lib/statusCodes');
+const AlertController = require('@alert/controller');
 
 router.get('/', (req, res) => {
-  out.success(res, statusCodes.SUCCESS, 'Aok');
+  AlertController.checkUser(req, res);
 });
 
 module.exports = router;

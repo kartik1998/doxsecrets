@@ -29,7 +29,8 @@
     "@src": "src",
     "@lib": "src/lib",
     "@routes": "src/routes",
-    "@v1": "src/routes/v1"
+    "@v1": "src/routes/v1",
+    "@alert": "src/alert"
   },
   "devDependencies": {
     "eslint": "^7.11.0",

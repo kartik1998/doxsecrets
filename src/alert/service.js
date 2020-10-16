@@ -1,5 +1,5 @@
 class AlertService {
-  static async checkUser() {
+  static checkUser() {
     return 'Aok';
   }
 }
