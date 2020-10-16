@@ -1,5 +1,7 @@
-require('dotenv').config();
 require('module-alias/register');
+require('dotenv').config();
+require('@config/index');
+
 const express = require('express');
 
 const PORT = process.env.PORT || 5000;
