@@ -4,7 +4,8 @@
   "description": "Setup alerts for Exposed credentials on git",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,25 @@
   "bugs": {
     "url": "https://gitlab.com/kartik_hyperverge/hv-alerts/issues"
   },
-  "homepage": "https://gitlab.com/kartik_hyperverge/hv-alerts#readme"
+  "homepage": "https://gitlab.com/kartik_hyperverge/hv-alerts#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "module-alias": "^2.2.2",
+    "path": "^0.12.7",
+    "kubera-logger": "git+ssh://gitlab.com/hvlabs/kubera/kubera-logger.git#v1.6.1"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@src": "src",
+    "@lib": "src/lib",
+    "@routes": "src/routes",
+    "@v1": "src/routes/v1"
+  },
+  "devDependencies": {
+    "eslint": "^7.11.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.5"
+  }
 }
