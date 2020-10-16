@@ -5,7 +5,7 @@ const statusCodes = require('@lib/statusCodes');
 
 // TODO : Delete this dummy API call
 router.get('/check', (req, res) => {
-    out.success(res, statusCodes.SUCCESS,'Aok');
+  out.success(res, statusCodes.SUCCESS, 'Aok');
 });
 
 module.exports = router;
