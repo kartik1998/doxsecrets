@@ -2,11 +2,7 @@ const axios = require('axios');
 const { GITHUB_BASE_URL_USERS } = require('nconf').get();
 
 class AlertService {
-  static checkUser() {
-    return 'Aok';
-  }
-
-  static async getUserRepos(userName) {
+  static async alertUserRepos(userName) {
     const response = await axios.get(`${GITHUB_BASE_URL_USERS + userName}/repos`);
     return response.data.map((res) => ({
       url: res.html_url,

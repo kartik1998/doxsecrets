@@ -25,6 +25,8 @@ done
 install_modules
 echo "We will use docker to setup gitleaks image, Ensure docker is running on your system."
 setup_docker
-npm start
+
+echo "npm run dev : starting up"
+npm run dev
 
 
