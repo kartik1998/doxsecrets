@@ -18,6 +18,7 @@
   },
   "homepage": "https://gitlab.com/kartik_hyperverge/hv-alerts#readme",
   "dependencies": {
+    "axios": "^0.20.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "kubera-logger": "git+ssh://gitlab.com/hvlabs/kubera/kubera-logger.git#v1.6.1",
