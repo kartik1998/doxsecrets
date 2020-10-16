@@ -1,3 +1,5 @@
+require('dotenv').config();
+require('module-alias/register');
 const express = require('express');
 
 const PORT = process.env.PORT || 5000;
