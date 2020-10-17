@@ -28,7 +28,7 @@ class AlertService {
             updated_at: res.updated_at,
             pushed_at: res.pushed_at,
           });
-        } else if (code === 2) {
+        } else if (code === 2 && leakCode !== 1) {
           leakCode = 2;
         }
         console.log(stderr);
@@ -40,12 +40,12 @@ class AlertService {
     }
     return responseObj;
   }
-  
+
   static async alertRepository(repoLink) {
     const responseObj = {};
     const output = [];
     const { stdout, stderr, code } = shell.exec(`${GIT_LEAKS_CHECK}${repoLink}`, { silent: true });
-    if(code === 1){
+    if (code === 1) {
       output.push(fetchJson(stdout));
     }
     console.log(stderr);
