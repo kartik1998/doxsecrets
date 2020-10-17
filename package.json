@@ -18,18 +18,23 @@
   },
   "homepage": "https://gitlab.com/kartik_hyperverge/hv-alerts#readme",
   "dependencies": {
+    "axios": "^0.20.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "kubera-logger": "git+ssh://gitlab.com/hvlabs/kubera/kubera-logger.git#v1.6.1",
     "module-alias": "^2.2.2",
-    "path": "^0.12.7"
+    "nconf": "^0.10.0",
+    "path": "^0.12.7",
+    "shelljs": "^0.8.4"
   },
   "_moduleAliases": {
     "@root": ".",
     "@src": "src",
     "@lib": "src/lib",
     "@routes": "src/routes",
-    "@v1": "src/routes/v1"
+    "@v1": "src/routes/v1",
+    "@alert": "src/alert",
+    "@config": "config"
   },
   "devDependencies": {
     "eslint": "^7.11.0",

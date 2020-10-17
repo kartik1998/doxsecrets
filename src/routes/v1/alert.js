@@ -1,9 +1,12 @@
 const router = require('express').Router();
-const out = require('@lib/apiout');
-const statusCodes = require('@lib/statusCodes');
+const AlertController = require('@alert/controller');
 
-router.get('/', (req, res) => {
-  out.success(res, statusCodes.SUCCESS, 'Aok');
+router.post('/user', (req, res) => {
+  AlertController.alertUserRepositories(req, res);
 });
+
+router.post('/repository', (req,res) => {
+  AlertController.alertRepository(req, res);
+})
 
 module.exports = router;
