@@ -5,4 +5,8 @@ router.post('/user', (req, res) => {
   AlertController.alertUserRepos(req, res);
 });
 
+router.post('/repository', (req,res) => {
+  AlertController.alertRepository(req, res);
+})
+
 module.exports = router;

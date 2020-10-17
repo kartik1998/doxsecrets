@@ -40,6 +40,19 @@ class AlertService {
     }
     return responseObj;
   }
+  
+  static async alertRepository(repoLink) {
+    const responseObj = {};
+    const output = [];
+    const { stdout, stderr, code } = shell.exec(`${GIT_LEAKS_CHECK}${repoLink}`, { silent: true });
+    if(code === 1){
+      output.push(fetchJson(stdout));
+    }
+    console.log(stderr);
+    responseObj.info = output;
+    responseObj.leakCode = code;
+    return responseObj;
+  }
 }
 
 module.exports = AlertService;
