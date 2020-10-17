@@ -8,7 +8,7 @@ const shell = require('shelljs');
 // 2: error encountered
 
 class AlertService {
-  static async alertUserRepos(userName) {
+  static async alertUserRepositories(userName) {
     const responseObj = {};
     let leakCode = 0;
     const output = [];
@@ -51,6 +51,7 @@ class AlertService {
     console.log(stderr);
     responseObj.info = output;
     responseObj.leakCode = code;
+    responseObj.repository = responseObj.repoLink;
     return responseObj;
   }
 }

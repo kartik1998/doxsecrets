@@ -3,9 +3,9 @@ const out = require('@lib/apiout');
 const AlertService = require('./service');
 
 class AlertController {
-  static async alertUserRepos(req, res) {
+  static async alertUserRepositories(req, res) {
     const { userName } = req.body;
-    const response = await AlertService.alertUserRepos(userName);
+    const response = await AlertService.alertUserRepositories(userName);
     return out.success(res, statusCodes.SUCCESS, response);
   }
 
