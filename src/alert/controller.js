@@ -5,14 +5,22 @@ const AlertService = require('./service');
 class AlertController {
   static async alertUserRepositories(req, res) {
     const { userName } = req.body;
-    const response = await AlertService.alertUserRepositories(userName);
-    return out.success(res, statusCodes.SUCCESS, response);
+    try {
+      const response = await AlertService.alertUserRepositories(userName);
+      return out.success(res, statusCodes.SUCCESS, response);
+    } catch (err) {
+      return out.error(res, statusCodes.INTERNALERR, err);
+    }
   }
 
   static async alertRepository(req, res) {
     const { repoLink } = req.body;
-    const response = await AlertService.alertRepository(repoLink);
-    return out.success(res, statusCodes.SUCCESS, response);
+    try {
+      const response = await AlertService.alertRepository(repoLink);
+      return out.success(res, statusCodes.SUCCESS, response);
+    } catch (err) {
+      return out.error(res, statusCodes.INTERNALERR, err);
+    }
   }
 }
 
