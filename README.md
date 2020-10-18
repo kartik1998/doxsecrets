@@ -16,7 +16,7 @@ bash git-secrets-automated.sh
 
 The script sets up a pre-commit hook and updates the git config
 to run that hook every time a developer commits code. If the code has
-a key that matches with the regex of an AWS,GCP or private key "AKIAIOSFODNN7EXAMPLE"
+a key that matches with the regex of an AWS,GCP or private key for example "AKIAIOSFODNN7EXAMPLE"
 then it doesn't allow the code to be committed. You can bypass that blocker by
 using `git commit --no-verify`
 
