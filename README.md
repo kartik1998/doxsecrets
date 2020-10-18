@@ -45,6 +45,7 @@ Gitleaks is a tool which scans a Github / Gitlab repositories for hardcoded secr
     "statusCode": 200,
     "status": "success",
     "result": {
+        "leakCode": 1,
         "info": [
             [
                 {
@@ -63,8 +64,7 @@ Gitleaks is a tool which scans a Github / Gitlab repositories for hardcoded secr
                     "operation": "addition"
                 }
              ]
-          ],
-         "leakCode": 1
+          ]
         }
     }
 }
@@ -90,6 +90,7 @@ Parses all the repositories of a user Github / Gitlab and searches for exposed s
     "statusCode": 200,
     "status": "success",
     "result": {
+        "leakCode": 1,
         "output": [
             {
                 "info": [
@@ -116,8 +117,7 @@ Parses all the repositories of a user Github / Gitlab and searches for exposed s
                 "updated_at": "2020-10-05T13:37:34Z",
                 "pushed_at": "2020-10-05T13:37:32Z"
             }
-        ],
-        "leakCode": 1
+        ]
     }
 }
 
@@ -131,8 +131,8 @@ Sample Output with no credentials exposed :
     "statusCode": 200,
     "status": "success",
     "result": {
-        "info": [],
-        "leakCode": 0
+        "leakCode": 0,
+        "info": []
     }
 }
 
