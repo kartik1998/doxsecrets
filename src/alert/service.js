@@ -32,7 +32,7 @@ class AlertService {
       console.log(stderr);
     });
     responseObj.leakCode = leakCode;
-    responseObj.output = output;
+    responseObj.info = output;
     return responseObj;
   }
 
