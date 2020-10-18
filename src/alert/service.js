@@ -31,8 +31,8 @@ class AlertService {
       }
       console.log(stderr);
     });
-    responseObj.output = output;
     responseObj.leakCode = leakCode;
+    responseObj.output = output;
     return responseObj;
   }
 
@@ -44,8 +44,8 @@ class AlertService {
       output.push(fetchJson(stdout));
     }
     console.log(stderr);
-    responseObj.info = output;
     responseObj.leakCode = code;
+    responseObj.info = output;
     responseObj.repository = responseObj.repoLink;
     return responseObj;
   }
