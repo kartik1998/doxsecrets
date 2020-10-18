@@ -6,6 +6,20 @@ To setup the project on your system run:
 bash setup.sh
 ```
 
+## Setup Pre-Commit Git hook to prevent committing secrets.
+
+```
+bash git-secrets-automated.sh
+```
+
+### Description
+
+The script sets up a pre-commit hook and updates the git config
+to run that hook every time a developer commits code. If the code has
+a key that matches with the regex of an AWS,GCP or private key "AKIAIOSFODNN7EXAMPLE"
+then it doesn't allow the code to be committed. You can bypass that blocker by
+using `git commit --no-verify`
+
 ## API Reference :
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/4f06dcb47916a7495bc1)
