@@ -1,10 +1,10 @@
 #/bin/bash
 
-function setup_docker {
+function setup_truffleHog {
 while true; do
-    read -p "pull docker image ? [Y/n]" yn
+    read -p "Install truffleHog ? [Y/n]" yn
     case $yn in
-        [Yy]* ) docker pull zricethezav/gitleaks; break;;
+        [Yy]* ) pip3 install truffleHog; break;;
         [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
@@ -13,7 +13,7 @@ done
 
 function install_modules {
 while true; do
-    read -p "install npm modules ? [Y/n]" yn
+    read -p "Install npm modules ? [Y/n]" yn
     case $yn in
         [Yy]* ) npm install; break;;
         [Nn]* ) break;;
@@ -23,8 +23,8 @@ done
 }
 
 install_modules
-echo "We will use docker to setup gitleaks image, Ensure docker is running on your system."
-setup_docker
+echo "We will use pip install to setup truffleHog."
+setup_truffleHog
 
 echo "npm run dev : starting up"
 npm run dev

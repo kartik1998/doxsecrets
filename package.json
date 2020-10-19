@@ -5,23 +5,16 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@gitlab.com/kartik_hyperverge/hv-alerts.git"
+    "dev": "nodemon src/index.js",
+    "bot": "nodemon src/bot.js"
   },
   "author": "Kartik Rawat",
   "license": "ISC",
-  "bugs": {
-    "url": "https://gitlab.com/kartik_hyperverge/hv-alerts/issues"
-  },
-  "homepage": "https://gitlab.com/kartik_hyperverge/hv-alerts#readme",
   "dependencies": {
+    "@slack/bolt": "^2.4.1",
     "axios": "^0.20.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "kubera-logger": "git+ssh://gitlab.com/hvlabs/kubera/kubera-logger.git#v1.6.1",
     "module-alias": "^2.2.2",
     "nconf": "^0.10.0",
     "path": "^0.12.7",

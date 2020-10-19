@@ -1,6 +1,7 @@
 const axios = require('axios');
-const { GITHUB_BASE_URL_USERS, GIT_LEAKS_CHECK } = require('nconf').get();
+const { GITHUB_BASE_URL_USERS, TRUFFLE_HOG_CHEK } = require('nconf').get();
 const { fetchJson } = require('@lib/parseString');
+const { checkRepoLink } = require('@lib/repoUtils');
 const shell = require('shelljs');
 
 // 0: no leaks
@@ -14,7 +15,7 @@ class AlertService {
     const output = [];
     const response = await axios.get(`${GITHUB_BASE_URL_USERS + userName}/repos`);
     response.data.forEach((res) => {
-      const { stdout, stderr, code } = shell.exec(`${GIT_LEAKS_CHECK}${res.html_url}`, { silent: true });
+      const { stdout, code } = shell.exec(`${TRUFFLE_HOG_CHEK}${res.html_url}`, { silent: true });
       if (code === 1) {
         leakCode = 1;
         output.push({
@@ -29,21 +30,25 @@ class AlertService {
       } else if (code === 2 && leakCode !== 1) {
         leakCode = 2;
       }
-      console.log(stderr);
     });
     responseObj.leakCode = leakCode;
-    responseObj.output = output;
+    responseObj.info = output;
     return responseObj;
   }
 
   static async alertRepository(repoLink) {
     const responseObj = {};
     const output = [];
-    const { stdout, stderr, code } = shell.exec(`${GIT_LEAKS_CHECK}${repoLink}`, { silent: true });
+    if (!checkRepoLink(repoLink)) {
+      return {
+        leakCode: 2,
+        info: 'Repository is either private or it does not exist',
+      };
+    }
+    const { stdout, code } = shell.exec(`${TRUFFLE_HOG_CHEK}${repoLink}`, { silent: true });
     if (code === 1) {
       output.push(fetchJson(stdout));
     }
-    console.log(stderr);
     responseObj.leakCode = code;
     responseObj.info = output;
     responseObj.repository = responseObj.repoLink;
