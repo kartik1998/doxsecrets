@@ -12,6 +12,7 @@ class BotService {
 
   static async alertRepository(repoLink) {
     const response = await AlertService.alertRepository(repoLink);
+    console.log("BotService -> alertRepository -> response", repoLink)
     const { leakCode, info } = response;
     await this.alertSlack(true, leakCode, info);
     return response;

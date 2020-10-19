@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { GITHUB_BASE_URL_USERS, GIT_LEAKS_CHECK } = require('nconf').get();
+const { GITHUB_BASE_URL_USERS, GIT_LEAKS_CHECK, TRUFFLE_HOG_CHEK } = require('nconf').get();
 const { fetchJson } = require('@lib/parseString');
 const shell = require('shelljs');
 
@@ -14,7 +14,7 @@ class AlertService {
     const output = [];
     const response = await axios.get(`${GITHUB_BASE_URL_USERS + userName}/repos`);
     response.data.forEach((res) => {
-      const { stdout, stderr, code } = shell.exec(`${GIT_LEAKS_CHECK}${res.html_url}`, { silent: true });
+      const { stdout, stderr, code } = shell.exec(`${TRUFFLE_HOG_CHEK}${res.html_url}`, { silent: true });
       if (code === 1) {
         leakCode = 1;
         output.push({
@@ -39,7 +39,7 @@ class AlertService {
   static async alertRepository(repoLink) {
     const responseObj = {};
     const output = [];
-    const { stdout, stderr, code } = shell.exec(`${GIT_LEAKS_CHECK}${repoLink}`, { silent: true });
+    const { stdout, stderr, code } = shell.exec(`${TRUFFLE_HOG_CHEK}${repoLink}`, { silent: true });
     if (code === 1) {
       output.push(fetchJson(stdout));
     }
