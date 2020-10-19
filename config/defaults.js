@@ -8,6 +8,7 @@ module.exports = {
     PORT: 5000,
     KARTIK_SLACK_URL: '***REMOVED***',
     NO_EXPOSED_CREDENTIALS: '*No exposed credentials found*  :white_check_mark:',
+    EXPOSED_CREDENTIALS_FOUND: 'GIT LEAKS FOUND :heavy_exclamation_mark:',
     REPO_NOT_SCANNED: '*Some error occurred, Either user/repository doesn\'t exist or it wasn\'t scanned properly.* :gear:',
   },
 };

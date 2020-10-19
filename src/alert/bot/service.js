@@ -1,6 +1,8 @@
 const axios = require('axios');
 const AlertService = require('@alert/service');
-const { KARTIK_SLACK_URL, NO_EXPOSED_CREDENTIALS, REPO_NOT_SCANNED } = require('nconf').get();
+const {
+  KARTIK_SLACK_URL, NO_EXPOSED_CREDENTIALS, REPO_NOT_SCANNED, EXPOSED_CREDENTIALS_FOUND,
+} = require('nconf').get();
 
 class BotService {
   static async alertUserRepositories(userName) {
@@ -12,7 +14,6 @@ class BotService {
 
   static async alertRepository(repoLink) {
     const response = await AlertService.alertRepository(repoLink);
-    console.log("BotService -> alertRepository -> response", repoLink)
     const { leakCode, info } = response;
     await this.alertSlack(true, leakCode, info);
     return response;
@@ -22,10 +23,10 @@ class BotService {
     if (leakCode === 0) {
       await axios.post(KARTIK_SLACK_URL, { text: NO_EXPOSED_CREDENTIALS });
     } else if (leakCode === 1) {
-      let reply = null;
-      reply = isRepository ? this.blockResponse(info[0]) : this.blockResponse(info[0].info);
+      const blocks = isRepository ? this.blockResponse(info[0]) : this.blockResponse(info[0].info);
       await axios.post(KARTIK_SLACK_URL, {
-        blocks: reply,
+        text: EXPOSED_CREDENTIALS_FOUND,
+        blocks,
       });
     } else {
       await axios.post(KARTIK_SLACK_URL, { text: REPO_NOT_SCANNED });
@@ -33,26 +34,32 @@ class BotService {
   }
 
   static blockResponse(info) {
-    const offenceList = [];
-    const offenders = [];
+    const reasons = [];
+    const leaks = [];
     info.forEach((item) => {
-      const {
-        offender, line, repo, author, email, file, date,
-      } = item;
-      if (!offenders.includes(offender)) {
-        offenders.push(offender);
-        offenceList.push(this.makeBlock(`${offender}\n${line}\n${repo}\n${author}\n${email}\n${file}\n${date}`));
+      const { reason, stringsFound } = item;
+      if (!reasons.includes(reason)) {
+        reasons.push(reason);
       }
+      stringsFound.forEach((str) => {
+        if (!leaks.includes(str)) {
+          leaks.push(str);
+        }
+      });
     });
-    return offenceList;
+    return [this.makeBlock(reasons, 'Types'), this.makeBlock(leaks, 'Credentials')];
   }
 
-  static makeBlock(text) {
+  static makeBlock(input, type) {
+    let output = '';
+    input.forEach((str) => {
+      output += `${str}, `;
+    });
     return {
       type: 'section',
       text: {
         type: 'mrkdwn',
-        text,
+        text: `*${type}*: ${output}`,
       },
     };
   }
