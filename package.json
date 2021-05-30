@@ -1,5 +1,5 @@
 {
-  "name": "hv-alerts",
+  "name": "doxsecrets",
   "version": "1.0.0",
   "description": "Setup alerts for Exposed credentials on git",
   "main": "index.js",
