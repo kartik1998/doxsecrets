@@ -2,13 +2,13 @@
 
 To setup the project on your system run:
 
-```
+```shell
 bash setup.sh
 ```
 
 ## Setup Pre-Commit Git hook to prevent committing secrets.
 
-```
+```shell
 bash git-secrets-automated.sh
 ```
 
@@ -28,7 +28,7 @@ using `git commit --no-verify`
 
 ### Alert Repository
 
-```
+```shell
 curl --header "Content-Type: application/json" \
   --request POST \
   --data '{"repoLink":"https://github.com/jjacob27/terraform-aws-harboroneks"}' \
@@ -40,7 +40,9 @@ curl --header "Content-Type: application/json" \
 
 Gitleaks is a tool which scans a Github / Gitlab repositories for hardcoded secrets like passwords, api keys, and tokens. The curl request mentioned above uses Gitleaks to scan a repository for such exposed credentials. Sample output for a repository with exposed credentials :
 
-```
+*Update: We have switched to truffleHog. You can still use gitleaks by making some small changes to the config/defaults.js file
+
+```javascript
 {
     "statusCode": 200,
     "status": "success",
@@ -73,7 +75,7 @@ Gitleaks is a tool which scans a Github / Gitlab repositories for hardcoded secr
 
 ### Alert User
 
-```
+```shell
 curl --header "Content-Type: application/json" \
   --request POST \
   --data '{"userName":"jjacob27"}' \
@@ -85,7 +87,7 @@ curl --header "Content-Type: application/json" \
 
 Parses all the repositories of a user Github / Gitlab and searches for exposed secrets. Sample output with leaks :
 
-```
+```javascript
 {
     "statusCode": 200,
     "status": "success",
@@ -126,7 +128,7 @@ Parses all the repositories of a user Github / Gitlab and searches for exposed s
 
 Sample Output with no credentials exposed :
 
-```
+```javascript
 {
     "statusCode": 200,
     "status": "success",
